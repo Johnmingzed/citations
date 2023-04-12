@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Routage par action
+ * Routage par action sur les citations
  */
 
 require_once ROOT . '/model/citations.model.php';

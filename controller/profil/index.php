@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Routage par action sur les profils 
+ */
+
 require ROOT . '/model/utilisateurs.model.php';
 
 if (isset($_GET['action']) && $_GET['action'] === 'deconnexion') unset($_SESSION['profil']);

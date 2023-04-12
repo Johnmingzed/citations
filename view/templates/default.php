@@ -26,7 +26,7 @@
             <?php if(isset($_SESSION['profil']['is_admin']) && $_SESSION['profil']['is_admin'] === 1) : ?>
             <li><a href="index.php?controller=utilisateurs">Utilisateurs</a></li>
             <?php endif ?>
-            <li><a href="index.php?controller=profil">Modifiler son profil</a></li>
+            <li><a href="index.php?controller=profil&action=modifier">Modifiler son profil</a></li>
             <li><a href="index.php?controller=profil&action=deconnexion">Se déconnecter</a></li>
 
         </ul>

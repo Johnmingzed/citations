@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Composants d'accès aux données de la table utilisateurs
+ */
+
 require __DIR__ . '/pdo.php';
 
 function get_password(PDO $pdo, string $email){

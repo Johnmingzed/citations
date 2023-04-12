@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Composants d'accès aux données de la table auteurs
+ */
+
 require __DIR__ . '/pdo.php';
 
 function auteurs_fetchall(PDO $pdo){

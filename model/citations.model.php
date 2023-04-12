@@ -12,7 +12,6 @@ require_once __DIR__ . '/pdo.php';
  * @param PDO $pdo
  * @return array
  */
-
 function citations_fetchall(PDO $pdo)
 {
     // On définit la requête à écrire dans $sql
@@ -20,25 +19,23 @@ function citations_fetchall(PDO $pdo)
     FROM citations 
     LEFT JOIN auteurs ON citations.auteurs_id = auteurs.id';
 
-    // On prépare la requête
-
     // On execute la requête
     $q = $pdo->query($sql);
-
-    // On transforme le résultat
 
     // On renvoit la réponse
     return $q->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
+
+
 /**
- * Retourn une citation sélectionnée grâce à son ID
+ * Retourne une citation sélectionnée grâce à son ID
  * 
  * @param PDO $pdo
  * @param int $id
  * @return array|false
  */
-
 function citations_fetchById(PDO $pdo, int $id)
 {
     $sql = 'SELECT * FROM citations WHERE citations.id = ?';
@@ -47,6 +44,18 @@ function citations_fetchById(PDO $pdo, int $id)
     return $q->fetch(PDO::FETCH_ASSOC);
 }
 
+
+
+
+/**
+ * Ajouter une nouvelle citation
+ * 
+ * @param PDO $pdo
+ * @param string $citation
+ * @param string $explication
+ * @param int $auteurs_id
+ * @return bool
+ */
 function citations_add(PDO $pdo, string $citation, string $explication = null, int $auteurs_id = null)
 {
     $sql = 'INSERT INTO citations (citations.citation, citations.explication, citations.auteurs_id) VALUES (:citation, :explication, :auteurs_id)';
@@ -57,6 +66,16 @@ function citations_add(PDO $pdo, string $citation, string $explication = null, i
     return $q->execute();
 }
 
+
+
+
+/**
+ * Mettre à jour une citation sélectionnée par son ID
+ * 
+ * @param PDO $pdo
+ * @param array $data : tableau contenant les données de la citation
+ * @return bool
+ */
 function citations_update(PDO $pdo, array $data)
 {
     $sql = 'UPDATE citations SET ';
@@ -69,9 +88,17 @@ function citations_update(PDO $pdo, array $data)
     return $q->execute($data);
 }
 
+
+
+
 /**
- * Supprime une citation par son ID
+ * Supprimer une citation sélectionnée par son ID
+ * 
+ * @param PDO $pdo
+ * @param int $id
+ * @return bool
  */
+
 function citations_delete(PDO $pdo, int $id)
 {
     $sql = 'DELETE FROM citations WHERE id = :id';
@@ -83,5 +110,4 @@ function citations_delete(PDO $pdo, int $id)
 // var_dump(fetchById($pdo, 1));
 // var_dump(add($pdo, 'une autre citation personalisée'));
 // update($pdo, ['citation' => 'Test de modification', 'explication' => 'ceci est une explication modifiée en PHP', 'id' => 9]);
-
 // delete($pdo, 12);
