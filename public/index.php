@@ -17,6 +17,7 @@ require_once '../inc/conf.php';
 if (isset($_GET['controller'])) {
     switch ($_GET['controller']) {
         case 'citations':
+        case 'profil':
             $controller = $_GET['controller'];
             break;
         default:
@@ -24,6 +25,10 @@ if (isset($_GET['controller'])) {
     }
 } else {
     $controller = 'citations';
+}
+
+if (!isset($_SESSION['profil'])) {
+    $controller = 'profil';
 }
 
 require_once ROOT . '/controller/' . $controller . '/index.php';

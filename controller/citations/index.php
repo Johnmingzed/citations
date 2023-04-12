@@ -10,7 +10,7 @@ if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case 'list':
         case 'delete':
-        case 'edit':
+        case 'update':
         case 'add':
         case 'read':
             $action = $_GET['action'];

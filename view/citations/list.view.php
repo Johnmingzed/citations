@@ -1,10 +1,38 @@
-<?php 
+<?php
 $title = 'Les citations';
 ob_start();
 ?>
 
 <main>
     <h2>Liste des citations</h2>
+    <section>
+
+        <form action="index.php?controller=citations&action=add" method="post">
+            <fieldset>
+                <legend>
+                    <h3>Ajouter une citation</h3>
+                </legend>
+                <div class="input">
+                    <label for="citation">Citation : </label>
+                    <textarea name="citation" id="citation"></textarea>
+                </div>
+                <div class="input">
+                    <label for="auteur">Auteur : </label>
+                    <select name="auteur" id="auteur">
+                        <option value="">Auteur inconnu</option>
+                        <?php foreach ($auteurs as $auteur) : ?>
+                            <option value="<?= $auteur['id']; ?>"><?= $auteur['auteur']; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+                <div class="input">
+                    <label for="explication">Explication : </label>
+                    <textarea name="explication" id="explication"></textarea>
+                </div>
+                <input type="submit" value="Ajouter">
+            </fieldset>
+        </form>
+    </section>
     <table>
         <tr>
             <th>Citations</th>

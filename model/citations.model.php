@@ -13,7 +13,7 @@ require_once __DIR__ . '/pdo.php';
  * @return array
  */
 
-function fetchall(PDO $pdo)
+function citations_fetchall(PDO $pdo)
 {
     // On définit la requête à écrire dans $sql
     $sql = 'SELECT citations.id, citations.citation, citations.explication, DATE_FORMAT(citations.date_modif, "%d/%m/%Y") as date_modif, auteurs.auteur 
@@ -39,7 +39,7 @@ function fetchall(PDO $pdo)
  * @return array|false
  */
 
-function fetchById(PDO $pdo, int $id)
+function citations_fetchById(PDO $pdo, int $id)
 {
     $sql = 'SELECT * FROM citations WHERE citations.id = ?';
     $q = $pdo->prepare($sql);
@@ -47,7 +47,7 @@ function fetchById(PDO $pdo, int $id)
     return $q->fetch(PDO::FETCH_ASSOC);
 }
 
-function add(PDO $pdo, string $citation, string $explication = null, int $auteurs_id = null)
+function citations_add(PDO $pdo, string $citation, string $explication = null, int $auteurs_id = null)
 {
     $sql = 'INSERT INTO citations (citations.citation, citations.explication, citations.auteurs_id) VALUES (:citation, :explication, :auteurs_id)';
     $q = $pdo->prepare($sql);
@@ -57,7 +57,7 @@ function add(PDO $pdo, string $citation, string $explication = null, int $auteur
     return $q->execute();
 }
 
-function update(PDO $pdo, array $data)
+function citations_update(PDO $pdo, array $data)
 {
     $sql = 'UPDATE citations SET ';
     foreach ($data as $key => $value) {
@@ -69,7 +69,10 @@ function update(PDO $pdo, array $data)
     return $q->execute($data);
 }
 
-function delete(PDO $pdo, int $id)
+/**
+ * Supprime une citation par son ID
+ */
+function citations_delete(PDO $pdo, int $id)
 {
     $sql = 'DELETE FROM citations WHERE id = :id';
     $q = $pdo->prepare($sql);
@@ -79,6 +82,6 @@ function delete(PDO $pdo, int $id)
 // var_dump(fetchall($pdo));
 // var_dump(fetchById($pdo, 1));
 // var_dump(add($pdo, 'une autre citation personalisée'));
-update($pdo, ['citation' => 'Test de modification', 'explication' => 'ceci est une explication modifiée en PHP', 'id' => 9]);
+// update($pdo, ['citation' => 'Test de modification', 'explication' => 'ceci est une explication modifiée en PHP', 'id' => 9]);
 
 // delete($pdo, 12);
