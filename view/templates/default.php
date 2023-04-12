@@ -16,7 +16,7 @@
     <?php unset($_SESSION['msg']);
     endif ?>
 
-    <?= 'Bienvenue ' . $_SESSION['profil']['prenom']; ?>
+    <?= 'Bienvenue ' . $_SESSION['profil']['prenom'] . ' !'; ?>
     <nav>
         <ul>
             <li><a href="index.php?controller=citations">Citations</a></li>
