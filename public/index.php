@@ -18,6 +18,7 @@ require_once '../inc/debug.php';
 if (isset($_GET['controller'])) {
     switch ($_GET['controller']) {
         case 'citations':
+        case 'auteurs':
         case 'profil':
             $controller = $_GET['controller'];
             break;

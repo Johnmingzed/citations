@@ -14,20 +14,20 @@ ob_start();
                 </legend>
                 <div class="input">
                     <label for="citation">Citation : </label>
-                    <textarea name="citation" id="citation"><?= $citation['citation'] ?></textarea>
+                    <textarea name="citation" id="citation" rows="5" cols="60"><?= $citation['citation'] ?></textarea>
                 </div>
                 <div class="input">
                     <label for="auteurs_id">Auteur : </label>
                     <select name="auteurs_id" id="auteurs">
                         <option value="">Auteur inconnu</option>
                         <?php foreach ($auteurs as $auteur) : ?>
-                            <option value="<?= $auteur['id']; ?>"<?php echo ($auteur['auteur'] === $citation['auteur']) ? ' selected' : ''; ?>><?= $auteur['auteur']; ?></option>
+                            <option value="<?= $auteur['id']; ?>" <?php echo ($auteur['auteur'] === $citation['auteur']) ? ' selected' : ''; ?>><?= $auteur['auteur']; ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
                 <div class="input">
                     <label for="explication">Explication : </label>
-                    <textarea name="explication" id="explication"><?= $citation['explication'] ?></textarea>
+                    <textarea name="explication" id="explication" rows="5" cols="60"><?= $citation['explication'] ?></textarea>
                 </div>
                 <input type="submit" value="Modifier">
             </fieldset>

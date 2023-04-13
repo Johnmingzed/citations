@@ -14,7 +14,7 @@ ob_start();
                 </legend>
                 <div class="input">
                     <label for="citation">Citation : </label>
-                    <textarea name="citation" id="citation"></textarea>
+                    <textarea name="citation" id="citation" rows="5" cols="60"></textarea>
                 </div>
                 <div class="input">
                     <label for="auteur">Auteur : </label>
@@ -27,7 +27,7 @@ ob_start();
                 </div>
                 <div class="input">
                     <label for="explication">Explication : </label>
-                    <textarea name="explication" id="explication"></textarea>
+                    <textarea name="explication" id="explication" rows="5" cols="60"></textarea>
                 </div>
                 <input type="submit" value="Ajouter">
             </fieldset>
@@ -37,7 +37,7 @@ ob_start();
         <tr>
             <th>Citations</th>
             <th>Auteur</th>
-            <th>Date de modification</th>
+            <th>Date d'enregistrement</th>
             <th>Actions</th>
         </tr>
         <?php foreach ($citations as $citation) : ?>
