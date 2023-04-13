@@ -19,6 +19,7 @@ if (isset($_GET['controller'])) {
     switch ($_GET['controller']) {
         case 'citations':
         case 'auteurs':
+        case 'utilisateurs':
         case 'profil':
             $controller = $_GET['controller'];
             break;

@@ -16,15 +16,16 @@
     <?php unset($_SESSION['msg']);
     endif ?>
 
-    <?= 'Bienvenue ' . $_SESSION['profil']['prenom'] . ' !'; ?>
+    <h4><?php echo 'Bienvenue ' . $_SESSION['profil']['prenom'] . ($_SESSION['profil']['is_admin'] === 1 ? ' [ADMIN]' : '') . ' !' ; ?></h4>
+
     <nav>
         <ul>
             <li><a href="index.php?controller=citations">Citations</a></li>
             <li><a href="index.php?controller=auteurs">Auteurs</a></li>
         </ul>
         <ul>
-            <?php if(isset($_SESSION['profil']['is_admin']) && $_SESSION['profil']['is_admin'] === 1) : ?>
-            <li><a href="index.php?controller=utilisateurs">Utilisateurs</a></li>
+            <?php if (isset($_SESSION['profil']['is_admin']) && $_SESSION['profil']['is_admin'] === 1) : ?>
+                <li><a href="index.php?controller=utilisateurs">Utilisateurs</a></li>
             <?php endif ?>
             <li><a href="index.php?controller=profil&action=modifier">Modifiler son profil</a></li>
             <li><a href="index.php?controller=profil&action=deconnexion">Se déconnecter</a></li>
