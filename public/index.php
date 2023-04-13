@@ -13,6 +13,7 @@ echo '</pre>'; */
 session_start();
 
 require_once '../inc/conf.php';
+require_once '../inc/debug.php';
 
 if (isset($_GET['controller'])) {
     switch ($_GET['controller']) {

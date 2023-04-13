@@ -1,7 +1,7 @@
 <?php
 
 /**
- * supprime une citation par son ID
+ * Supprime une citation par son ID
  */
 
 if (isset($_GET['id'])) {

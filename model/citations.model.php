@@ -38,7 +38,10 @@ function citations_fetchall(PDO $pdo)
  */
 function citations_fetchById(PDO $pdo, int $id)
 {
-    $sql = 'SELECT * FROM citations WHERE citations.id = ?';
+    $sql = 'SELECT citations.id, citations.citation, citations.explication, DATE_FORMAT(citations.date_modif, "%d/%m/%Y") as date_modif, auteurs.auteur 
+    FROM citations 
+    LEFT JOIN auteurs ON citations.auteurs_id = auteurs.id
+    WHERE citations.id = ?';
     $q = $pdo->prepare($sql);
     $q->execute([$id]);
     return $q->fetch(PDO::FETCH_ASSOC);

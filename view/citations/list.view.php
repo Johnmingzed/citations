@@ -42,7 +42,7 @@ ob_start();
         </tr>
         <?php foreach ($citations as $citation) : ?>
             <tr>
-                <td><?= substr($citation['citation'], 0, 30) . '...' ?></td>
+                <td><a href="index.php?controller=citations&action=read&id=<?= $citation['id'] ?>"><?= substr($citation['citation'], 0, 30) . '...' ?></a></td>
                 <td><?php
                     if (empty($citation['auteur'])) {
                         echo 'Anonyme';
