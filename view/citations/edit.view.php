@@ -30,6 +30,7 @@ ob_start();
                     <textarea name="explication" id="explication" rows="5" cols="60"><?= $citation['explication'] ?></textarea>
                 </div>
                 <input type="submit" value="Modifier">
+                <a class="button" href="index.php?controller=citations&action=list">Annuler</a>
             </fieldset>
         </form>
     </section>

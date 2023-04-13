@@ -1,14 +1,13 @@
 <?php
 
-if (isset($_POST['citation'], $_POST['auteur'], $_POST['explication'])) {
-    if (!empty($_POST['citation'])) {
-        $auteur_id = empty($_POST['auteur']) ? NULL : $_POST['auteur'];
-        $explication = empty($_POST['explication']) ? NULL : $_POST['explication'];
+if (isset($_POST['auteur'], $_POST['bio'])) {
+    if (!empty($_POST['auteur'])) {
+        $_POST['bio']= empty($_POST['bio']) ? NULL : $_POST['bio'];
 
-        if (citations_add($pdo, $_POST['citation'], $explication, $auteur_id)) {
+        if (auteurs_add($pdo, $_POST['auteur'], $_POST['bio'])) {
             $_SESSION['msg'] = [
                 'css' => 'success',
-                'txt' => 'Votre citation a bien été ajoutée.'
+                'txt' => 'Votre auteur a bien été ajoutée.'
             ];
         } else {
             $_SESSION['msg'] = [
@@ -24,4 +23,4 @@ if (isset($_POST['citation'], $_POST['auteur'], $_POST['explication'])) {
     }
 }
 
-header('Location: index.php?controller=citations&action=list');
+header('Location: index.php?controller=auteurs&action=list');

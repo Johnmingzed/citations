@@ -1,19 +1,16 @@
-Controller citation modification
+Controller auteur modification
 
 <?php
 
-debug($_POST);
-
-if (isset($_GET['id'], $_POST['citation'], $_POST['auteurs_id'], $_POST['explication'])) {
-    if (!empty($_POST['citation']) && !empty($_GET['id'])) {
-        $_POST['auteurs_id'] = empty($_POST['auteurs_id']) ? NULL : $_POST['auteurs_id'];
-        $_POST['explication'] = empty($_POST['explication']) ? NULL : $_POST['explication'];
+if (isset($_GET['id'], $_POST['auteur'], $_POST['bio'])) {
+    if (!empty($_POST['auteur']) && !empty($_GET['id'])) {
+        $_POST['bio'] = empty($_POST['bio']) ? NULL : $_POST['bio'];
         $_POST['id'] = $_GET['id'];
 
-        if (citations_update($pdo, $_POST)) {
+        if (auteurs_update($pdo, $_POST)) {
             $_SESSION['msg'] = [
                 'css' => 'success',
-                'txt' => 'Votre citation a bien été modifiée.'
+                'txt' => 'Votre auteur a bien été modifiée.'
             ];
         } else {
             $_SESSION['msg'] = [
@@ -29,4 +26,4 @@ if (isset($_GET['id'], $_POST['citation'], $_POST['auteurs_id'], $_POST['explica
     }
 }
 
-header('Location: index.php?controller=citations&action=list');
+header('Location: index.php?controller=auteurs&action=list');

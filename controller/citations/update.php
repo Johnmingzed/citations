@@ -1,8 +1,4 @@
-Controller citation modification
-
 <?php
-
-debug($_POST);
 
 if (isset($_GET['id'], $_POST['citation'], $_POST['auteurs_id'], $_POST['explication'])) {
     if (!empty($_POST['citation']) && !empty($_GET['id'])) {

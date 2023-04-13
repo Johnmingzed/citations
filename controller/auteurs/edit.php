@@ -1,23 +1,19 @@
 <?php
 
-require ROOT . '/model/auteurs.model.php';
-
 /**
- * Sélectionne un citation au complet par son ID
- * ainsi que la liste des auteurs
+ * Sélectionne un auteur par son ID
  */
 
 if (isset($_GET['id'])) {
-    $citation = citations_fetchById($pdo, $_GET['id']);
-    $auteurs = auteurs_fetchall($pdo);
+    $auteur = auteurs_fetchById($pdo, $_GET['id']);
 } else {
     $msg = [
         'css' => 'warning',
-        'txt' => 'Veuillez sélectionner une citation'
+        'txt' => 'Veuillez sélectionner un auteur'
     ];
     $_SESSION['msg'] = $msg;
-    header('Location: index.php?controller=citations&action=list');
+    header('Location: index.php?controller=auteurs&action=list');
 }
 
-// debug($citation);
-require_once ROOT . '/view/citations/edit.view.php';
+// debug($auteur);
+require_once ROOT . '/view/auteurs/edit.view.php';

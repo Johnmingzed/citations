@@ -12,7 +12,8 @@ require __DIR__ . '/pdo.php';
  * @param PDO $pdo
  * @return array
  */
-function auteurs_fetchall(PDO $pdo){
+function auteurs_fetchall(PDO $pdo)
+{
     $sql = 'SELECT * FROM auteurs ORDER BY auteur';
     $q = $pdo->query($sql);
     return $q->fetchAll(PDO::FETCH_ASSOC);
@@ -76,4 +77,22 @@ function auteurs_update(PDO $pdo, array $data)
     $sql .= ' WHERE id = :id';
     $q = $pdo->prepare($sql);
     return $q->execute($data);
+}
+
+
+
+
+/**
+ * Supprimer un auteur sélectionnée par son ID
+ * 
+ * @param PDO $pdo
+ * @param int $id
+ * @return bool
+ */
+
+function auteurs_delete(PDO $pdo, int $id)
+{
+    $sql = 'DELETE FROM auteurs WHERE id = :id';
+    $q = $pdo->prepare($sql);
+    return $q->execute([':id' => $id]);
 }

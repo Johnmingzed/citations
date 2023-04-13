@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Supprime une citation par son ID
+ * Supprime un auteur par son ID
  */
 
 if (isset($_GET['id'])) {
-    citations_delete($pdo, $_GET['id']);
+    auteurs_delete($pdo, $_GET['id']);
     $msg = [
         'css' => 'success',
-        'txt' => 'La citation a bien été supprimée.'
+        'txt' => 'L\'auteur a bien été supprimé de la liste.'
     ];
 }else{
     $msg = [
@@ -18,4 +18,4 @@ if (isset($_GET['id'])) {
 }
 
 $_SESSION['msg'] = $msg;
-header('Location: index.php?controller=citations&action=list');
+header('Location: index.php?controller=auteurs&action=list');
