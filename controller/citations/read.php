@@ -1,7 +1,5 @@
 <?php
 
-require ROOT . '/model/auteurs.model.php';
-
 /**
  * Affiche un citation au complet par son ID
  */

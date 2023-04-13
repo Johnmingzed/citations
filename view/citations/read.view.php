@@ -1,5 +1,5 @@
 <?php
-$title = 'Les citations';
+$title = 'Une citation en détails';
 ob_start();
 ?>
 
