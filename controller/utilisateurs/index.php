@@ -15,7 +15,6 @@ if (isset($_SESSION['profil']['is_admin']) && $_SESSION['profil']['is_admin'] ==
             case 'edit':
             case 'update':
             case 'add':
-            case 'read':
                 $action = $_GET['action'];
                 break;
             default:

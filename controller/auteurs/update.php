@@ -1,5 +1,3 @@
-Controller auteur modification
-
 <?php
 
 if (isset($_GET['id'], $_POST['auteur'], $_POST['bio'])) {

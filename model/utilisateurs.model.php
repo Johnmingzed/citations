@@ -26,6 +26,18 @@ function fetch_user_by_mail(PDO $pdo, string $email){
 
 
 
+/**
+ * Retourne un utilisateur par son ID
+ */
+function fetch_user_by_id(PDO $pdo, string $id){
+    $sql = 'SELECT * FROM utilisateurs WHERE id = ?';
+    $q = $pdo->prepare($sql);
+    $q->execute([$id]);
+    return $q->fetch(PDO::FETCH_ASSOC);
+}
+
+
+
 
 /**
  * Retourne l'ensemble des utilisateurs
@@ -79,4 +91,27 @@ function users_delete(PDO $pdo, int $id)
     $sql = 'DELETE FROM utilisateurs WHERE id = ?';
     $q = $pdo->prepare($sql);
     return $q->execute([$id]);
+}
+
+
+
+
+
+/**
+ * Mettre à jour un utilisateur sélectionnée par son ID
+ * 
+ * @param PDO $pdo
+ * @param array $data : tableau contenant les données de l'utilisateur dont son id
+ * @return bool
+ */
+function users_update(PDO $pdo, array $data)
+{
+    $sql = 'UPDATE utilisateurs SET ';
+    foreach ($data as $key => $value) {
+        $sql .= $key . ' = :' . $key . ', ';
+    }
+    $sql = substr($sql, 0, -2);
+    $sql .= ' WHERE id = :id';
+    $q = $pdo->prepare($sql);
+    return $q->execute($data);
 }
