@@ -14,10 +14,12 @@ if (isset($_GET['id'], $_POST['mail'])) {
         $_POST['is_admin'] = ($_POST['is_admin'] === 'on') ? 1 : 0;
         $_POST['id'] = $_GET['id'];
 
-        // On vérifie que l'adresse mail est unique
-        $sql = "SELECT COUNT(*) FROM utilisateurs WHERE mail = ?";
+        // On vérifie que l'adresse mail n'est pas attribuée à un autre utilisateur
+        $sql = "SELECT COUNT(*) FROM utilisateurs WHERE mail = :mail AND id != :id";
         $q = $pdo->prepare($sql);
-        $q->execute([$_POST['mail']]);
+        $q->bindValue(':mail', $_POST['mail']);
+        $q->bindValue(':id', $_POST['id']);
+        $q->execute();
         if ($q->fetchColumn() === 0) {
             // Si elle est unique on enregistre les modifications
             if (users_update($pdo, $_POST)) {
@@ -31,6 +33,7 @@ if (isset($_GET['id'], $_POST['mail'])) {
                     'txt' => 'Action impossible.'
                 ];
                 header('Location: index.php?controller=utilisateurs&action=edit&id='.$_GET['id'].'');
+                exit;
             }
         } else {
             // Sinon on affiche un message d'erreur
@@ -39,12 +42,15 @@ if (isset($_GET['id'], $_POST['mail'])) {
                 'txt' => 'Cette adresse est déjà utilisée.'
             ];
             header('Location: index.php?controller=utilisateurs&action=edit&id='.$_GET['id'].'');
+            exit;
         }
     } else {
         $_SESSION['msg'] = [
             'css' => 'warning',
             'txt' => 'Merci de compléter tout les champs.'
         ];
+        header('Location: index.php?controller=utilisateurs&action=edit&id='.$_GET['id'].'');
+        exit;
     }
 }
 header('Location: index.php?controller=utilisateurs&action=list');
