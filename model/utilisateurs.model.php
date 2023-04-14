@@ -50,7 +50,7 @@ function users_fetchAll(PDO $pdo)
  * @param string $mail
  * @param string $prenom
  * @param string $nom
- * @param bool $is admin
+ * @param bool $is_admin
  * @return bool
  */
 function users_add(PDO $pdo, string $mail, string $prenom = null, string $nom = null, bool $is_admin = null)
@@ -62,4 +62,21 @@ function users_add(PDO $pdo, string $mail, string $prenom = null, string $nom = 
     $q->bindValue(':nom', $nom);
     $q->bindValue(':is_admin', $is_admin);
     return $q->execute();
+}
+
+
+
+
+/**
+ * Supprime un utilisateur par son ID
+ * 
+ * @param PDO $pdo
+ * @param int $id
+ * @return bool
+ */
+function users_delete(PDO $pdo, int $id)
+{
+    $sql = 'DELETE FROM utilisateurs WHERE id = ?';
+    $q = $pdo->prepare($sql);
+    return $q->execute([$id]);
 }

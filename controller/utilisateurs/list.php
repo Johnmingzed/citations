@@ -1,5 +1,3 @@
-On passe par le controlleur utilisateur LIST | 
-
 <?php
 
 /**

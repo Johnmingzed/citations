@@ -1,8 +1,4 @@
-On passe par le controlleur utilisateur ADD |
-
 <?php
-
-debug($_POST);
 
 if (isset($_POST['mail'])) {
     if (!empty($_POST['mail'])) {
@@ -11,22 +7,23 @@ if (isset($_POST['mail'])) {
         $_POST['is_admin'] = isset($_POST['is_admin']) && $_POST['is_admin'] === 'on';
 
         if (users_add($pdo, $_POST['mail'], $_POST['prenom'], $_POST['nom'], $_POST['is_admin'])) {
-            $_SESSION['msg'] = [
+            $msg = [
                 'css' => 'success',
                 'txt' => 'Le nouvel utilisateur a bien été créé.'
             ];
         } else {
-            $_SESSION['msg'] = [
+            $msg = [
                 'css' => 'warning',
                 'txt' => 'Action impossible.'
             ];
         }
     } else {
-        $_SESSION['msg'] = [
+        $msg = [
             'css' => 'warning',
             'txt' => 'Merci de compléter tout les champs.'
         ];
     }
 }
 
+$_SESSION['msg'] = $msg;
 header('Location: index.php?controller=utilisateurs&action=list');
