@@ -1,4 +1,3 @@
-On passe par le controlleur utilisateur DELETE |
 <?php
 
 /**
