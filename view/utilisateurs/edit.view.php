@@ -33,7 +33,7 @@ ob_start();
                         echo '<span class="pw_inactive">INACTIF</span>';
                     }
                     ?>
-                    <a class="button" href="index.php?controller=utilisateurs&action=pw_reset&id==<?= $utilisateur['id']; ?>">Réinitialiser</a>
+                    <a class="button" href="index.php?controller=utilisateurs&action=pw_reset&id=<?= $utilisateur['id']; ?>">Réinitialiser</a>
                 </div>
                 <div class="id_admin">
                     <label for="id_admin">Administrateur </label>

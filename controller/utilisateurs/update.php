@@ -1,5 +1,3 @@
-On passe par le controlleur utilisateur UPDATE |
-
 <?php
 
 /* $_POST['id'] = $_GET['id'];

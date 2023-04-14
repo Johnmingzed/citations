@@ -18,6 +18,7 @@ if (isset($_GET['action'])) {
             break;
         default:
             require_once ROOT . '/controller/404/index.php';
+            exit;
     }
 } else {
     $action = 'list';

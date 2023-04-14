@@ -19,6 +19,7 @@ if (isset($_SESSION['profil']['is_admin']) && $_SESSION['profil']['is_admin'] ==
                 break;
             default:
                 require_once ROOT . '/controller/404/index.php';
+                exit;
         }
     } else {
         $action = 'list';
