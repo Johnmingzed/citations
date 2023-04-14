@@ -39,3 +39,27 @@ function users_fetchAll(PDO $pdo)
     $q = $pdo->query($sql);
     return $q->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+
+
+/**
+ * Ajouter un nouvel utilisateur
+ * 
+ * @param PDO $pdo
+ * @param string $mail
+ * @param string $prenom
+ * @param string $nom
+ * @param bool $is admin
+ * @return bool
+ */
+function users_add(PDO $pdo, string $mail, string $prenom = null, string $nom = null, bool $is_admin = null)
+{
+    $sql = 'INSERT INTO utilisateurs (mail, prenom, nom, is_admin) VALUES (:mail, :prenom, :nom, :is_admin)';
+    $q = $pdo->prepare($sql);
+    $q->bindValue(':mail', $mail);
+    $q->bindValue(':prenom', $prenom);
+    $q->bindValue(':nom', $nom);
+    $q->bindValue(':is_admin', $is_admin);
+    return $q->execute();
+}

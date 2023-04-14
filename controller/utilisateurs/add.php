@@ -8,12 +8,12 @@ if (isset($_POST['mail'])) {
     if (!empty($_POST['mail'])) {
         $_POST['prenom'] = empty($_POST['prenom']) ? NULL : ucfirst(strtolower($_POST['prenom']));
         $_POST['nom'] = empty($_POST['nom']) ? NULL : strtoupper($_POST['nom']);
-        $_POST['is_admin'] = empty($_POST['is_admin']) ? NULL : $_POST['is_admin'];
+        $_POST['is_admin'] = isset($_POST['is_admin']) && $_POST['is_admin'] === 'on';
 
-        if (auteurs_add($pdo, $_POST['auteur'], $_POST['prenom'])) {
+        if (users_add($pdo, $_POST['mail'], $_POST['prenom'], $_POST['nom'], $_POST['is_admin'])) {
             $_SESSION['msg'] = [
                 'css' => 'success',
-                'txt' => 'Votre auteur a bien été ajoutée.'
+                'txt' => 'Le nouvel utilisateur a bien été créé.'
             ];
         } else {
             $_SESSION['msg'] = [
@@ -29,4 +29,4 @@ if (isset($_POST['mail'])) {
     }
 }
 
-// header('Location: index.php?controller=utilisateurs&action=list');
+header('Location: index.php?controller=utilisateurs&action=list');
