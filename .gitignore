@@ -1,5 +1,6 @@
 desktop.ini
 inc/conf.php
+inc/dev.json
 vendor/
 composer.lock
 composer.phar
