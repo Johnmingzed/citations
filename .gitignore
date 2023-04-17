@@ -1,2 +1,5 @@
 desktop.ini
 inc/conf.php
+vendor/
+composer.lock
+composer.phar
