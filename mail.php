@@ -4,6 +4,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+require_once 'inc/conf.php';
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
@@ -15,15 +16,15 @@ try {
     //Server settings
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'mail.gandi.net';                     //Set the SMTP server to send through
+    $mail->Host       = $js['smtp']['host'];                    //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'cda@jambonbill.org';                     //SMTP username
-    $mail->Password   = '6vbms3bp8sBf4BEG';                               //SMTP password
+    $mail->Username   = $js['smtp']['username'];               //SMTP username
+    $mail->Password   = $js['smtp']['password'];                //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->Port       = $js['smtp']['port'];                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('cda@jambonbill.org');
+    $mail->setFrom($js['smtp']['username']);
     $mail->addAddress('jonathan.pchs@gmail.com');     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
