@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
 
 
 // On envoie un email à l'utilisateur pour lui transmettre le token
-require_once __DIR__ . '/../../model/mail.php';
+require_once ROOT . '/model/mail.php';
 
 if (fetch_user_by_id($pdo, $_GET['id'])) {
     $utilisateur = fetch_user_by_id($pdo, $_GET['id']);
@@ -50,7 +50,7 @@ try {
     $mail->SMTPAuth   = true;                           //Enable SMTP authentication
     $mail->Username   = $config['smtp']['username'];    //SMTP username
     $mail->Password   = $config['smtp']['password'];    //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    //Enable implicit TLS encryption
+    $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;    //Enable implicit TLS encryption
     $mail->Port       = $config['smtp']['port'];        //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
