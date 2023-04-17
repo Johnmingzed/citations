@@ -47,7 +47,9 @@ ob_start();
                 <td><?= $utilisateur['nom'] ?></td>
                 <td><?= $utilisateur['mail'] ?></td>
                 <td><?= ($utilisateur['is_admin'] === 1) ? 'OUI' : 'NON' ?></td>
-                <td><a href="index.php?controller=utilisateurs&action=edit&id=<?= $utilisateur['id'] ?>">modifier</a> - <a href="index.php?controller=utilisateurs&action=delete&id=<?= $utilisateur['id'] ?>">supprimer</a></td>
+                <td><a href="index.php?controller=utilisateurs&action=edit&id=<?= $utilisateur['id'] ?>">modifier</a> - 
+                <a href="index.php?controller=utilisateurs&action=delete&id=<?= $utilisateur['id'] ?>">supprimer</a> - 
+                <a href="index.php?controller=utilisateurs&action=pw_reset&id=<?= $utilisateur['id'] ?>">réinitialisation du mot de passe</a></td>
             </tr>
         <?php endforeach; ?>
     </table>
