@@ -1,13 +1,25 @@
-Controller utilisateur PW_RESET |
-
 <?php
+
+if (isset($_GET['token']) && !empty($_GET['token'])) {
+    echo 'OK on va pouvoir changer de mot de passe.<br>';
+    echo 'Votre token est : ' . $_GET['token'] . '<br>';
+    $token_age = substr($_GET['token'], -10);
+    echo 'Sa date de création est : ' . $token_age . '<br>';
+    $token_age += 864000; // +10 jours
+    if ($token_age > time()) {
+        echo 'Le token est valide on peut continuer<br>';
+    } else {
+        echo 'Ce token est périmé, merci de faire une nouvelle demande de réinitialisation.';
+    }
+    exit;
+}
 
 // On supprime le mot de passe en BDD
 
 // On créé un token
 if (isset($_GET['id'])) {
     if (fetch_user_by_id($pdo, $_GET['id'])) {
-        $token = md5(time());
+        $token = md5(time()) . time();
         // On associe le token à l'utilisateur
         $data = [
             'token' => $token,
@@ -61,7 +73,7 @@ try {
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Réinitialisation de votre mot de passe';
     $mail->Body    = 'Vous avez demander la réintialisation de votre mot de passe.<br> Pour poursuivre veuillez sur le lien suivant :<br><a href="http://localhost/citations/controller/utilisateurs/pw_reset.php?token=' . $token . '">Réinitialiser votre mot de passe</a>';
-    $mail->AltBody = 'Vous avez demander la réintialisation de votre mot de passe.\nl Pour poursuivre veuillez vous rendre à l\'adresse suivante :\nl http://localhost/citations/controller/utilisateurs/pw_reset.php?token=' . $token .'';
+    $mail->AltBody = 'Vous avez demander la réintialisation de votre mot de passe.\nl Pour poursuivre veuillez vous rendre à l\'adresse suivante :\nl http://localhost/citations/controller/utilisateurs/pw_reset.php?token=' . $token;
 
     $mail->send();
     echo 'Message envoyé';
