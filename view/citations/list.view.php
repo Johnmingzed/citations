@@ -4,7 +4,7 @@ ob_start();
 ?>
 
 <main>
-    <h2>Liste des citations</h2>
+    <h1>Liste des citations</h1>
     <section>
         <form action="index.php?controller=citations&action=add" method="post">
             <fieldset>

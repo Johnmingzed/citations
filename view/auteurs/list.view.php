@@ -4,7 +4,7 @@ ob_start();
 ?>
 
 <main>
-    <h2>Liste des auteurs</h2>
+    <h1>Liste des auteurs</h1>
     <section>
         <form action="index.php?controller=auteurs&action=add" method="post">
             <fieldset>

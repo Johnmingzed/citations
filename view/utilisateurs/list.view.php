@@ -4,7 +4,7 @@ ob_start();
 ?>
 
 <main>
-    <h2>Liste des utilisateurs</h2>
+    <h1>Liste des utilisateurs</h1>
         <section>
         <form action="index.php?controller=utilisateurs&action=add" method="post">
             <fieldset>

@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Flamenco:wght@300;400&family=Fugaz+One&display=swap');
+
+:root {
+    --color-green: hsl(60, 16%, 57%);
+    --color-pale-green: hsl(53, 45%, 71%);
+    --color-light: hsl(53, 51%, 87%);
+    --color-orange: hsl(17, 48%, 70%);
+    --color-red: hsl(357, 28%, 63%);
+    --color-dark: hsl(60, 16%, 10%);
+    --color-white: hsl(60, 16%, 90%);
+    --font-base: 'Flamenco', cursive;
+    --font-display: 'Fugaz One', cursive;
+}
+
+html {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-family: var(--font-base);
+    font-size: 1.8rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+header {
+    background-color: var(--color-red);
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul {
+    list-style: none;
+}
+
+main {
+    width: 80vw;
+    background-color: var(--color-orange);
+}
