@@ -13,6 +13,6 @@ class Debug
 
     public static function test(): void
     {
-        echo 'TEST OK';
+        echo 'TEST OK pour la classe Debug::test() <br>';
     }
 }

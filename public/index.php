@@ -1,7 +1,11 @@
 <?php
 
-use \App\Autoloader as AppAutoloader;
-use \Core\Autoloader as CoreAutoloader;
+use App\Autoloader as AppAutoloader;
+use App\Models\AuteursModel;
+use Core\Autoloader as CoreAutoloader;
+use Core\Debug;
+use Core\BDD\Database;
+use Core\BDD\Model;
 
 define('ROOT', dirname(__DIR__));
 require_once ROOT . '/conf/constantes.php';
@@ -13,5 +17,10 @@ AppAutoloader::register();
 require_once ROOT . '/Core/Autoloader.php';
 CoreAutoloader::register();
 
-// Test de fonctionnement des Autoloaders
-Core\Debug::test();
+
+$auteurs = new AuteursModel;
+dump($auteurs->findAll());
+
+// Test de fonctionnement de Database
+$model = new Model;
+dump($model->findBy(['id' => 2]));
