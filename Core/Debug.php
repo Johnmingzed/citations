@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+
 class Debug
 {
     public static function print_r(array $array): void
@@ -9,7 +11,7 @@ class Debug
         echo '</pre>';
     }
 
-    public static function test()
+    public static function test(): void
     {
         echo 'TEST OK';
     }

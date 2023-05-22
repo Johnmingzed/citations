@@ -12,9 +12,8 @@ class Autoloader
     private static function autoload($fqcn)
     {
         $class = $fqcn;
-        $class = __DIR__;
-        $class .= str_replace(__NAMESPACE__ . '\\', '', $class);
-        $class .= '.php';
+        $class = str_replace(__NAMESPACE__ . '\\', '', $class);
+        $class = __DIR__ . '/' .  str_replace('\\', '/', $class) . '.php';
         if (file_exists($class)) {
             require_once $class;
         }

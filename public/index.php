@@ -1,7 +1,7 @@
 <?php
 
-use App\Autoloader as AppAutoloader;
-use Core\Autoloader as CoreAutoloader;
+use \App\Autoloader as AppAutoloader;
+use \Core\Autoloader as CoreAutoloader;
 
 define('ROOT', dirname(__DIR__));
 require_once ROOT . '/conf/constantes.php';
@@ -13,4 +13,5 @@ AppAutoloader::register();
 require_once ROOT . '/Core/Autoloader.php';
 CoreAutoloader::register();
 
-Debug::test();
+// Test de fonctionnement des Autoloaders
+Core\Debug::test();
