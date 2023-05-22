@@ -1,0 +1,7 @@
+# Réécriture des URL avec redirection vers le routeur
+RewriteEngine On
+# Exclusion des fichiers de la règle
+RewriteCond %{REQUEST_FILENAME} !-f
+# Exclusion des doosiers de la règle
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([A-Za-z0-9\/\-\.]*)$ index.php?req=$1
