@@ -17,13 +17,19 @@ class Model extends Database
         $this->db = parent::getInstance();
     }
 
+    /**
+     * Méthode principale d'éxecution des requêtes
+     * @param string $sql // Requête SQL à éxecuter
+     * @param array $attributes // Attributs à ajouter à la requête
+     * @return PDOStatement|false
+     */
     public function statement(string $sql, array $attributes = NULL): PDOStatement|false
     {
         if (is_null($attributes)) {
-            //requête simple
+            // Requête simple
             return $this->db->query($sql);
         } else {
-            //requête préparée
+            // Requête préparée
             $q = $this->db->prepare($sql);
             $q->execute($attributes);
             return $q;
@@ -32,7 +38,7 @@ class Model extends Database
 
     /**
      * Sélection de tous les enregistrements d'une table
-     * @return array Tableau des enregistrement trouvés
+     * @return array Tableau des enregistrements trouvés
      */
     public function findAll(): array
     {
@@ -41,7 +47,12 @@ class Model extends Database
         return $q->fetchAll();
     }
 
-    public function findBy(array $attributes)
+    /**
+     * Sélection des enregistrements en fonction d'un tableau de critères
+     * @param array $attributes // Critères de sélection
+     * @return array Tableau des enregistrements trouvés
+     */
+    public function findBy(array $attributes): array
     {
         $fields = [];
         $values = [];
@@ -49,56 +60,79 @@ class Model extends Database
             $fields[] = $key . ' = ? ';
             $values[] = $value;
         }
+        // SELECT * FROM auteurs WHERE auteur = 'Bob';
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . implode(' AND ', $fields);
         $q = $this->statement($sql, $values);
         return $q->fetchAll();
     }
 
+    /**
+     * Sélection d'un enregistrement par son ID
+     * @param int $id // ID de l'enregistrement
+     * @return array Tableau de l'enregistrement trouvé
+     */
     public function findById(int $id)
     {
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE id = ' . $id;
         $q = $this->statement($sql);
-        return $q->fetchAll();
+        return $q->fetch();
     }
 
-    public function create(array $attributes)
+    /**
+     * Création d'une entrée selon un tableau de données
+     * @param array $datas// Données à enregistrer
+     * @return bool
+     */
+    public function create(array $datas)
     {
-        //dump($attributes);
         $fields = [];
         $values = [];
-        foreach ($attributes as $key => $value) {
-            $fields[] = $key;
-            $values[] = '\'' . $value . '\'';
-        }
-        //dump($fields, $values);
-        // INSERT INTO auteurs (key1, key2) VALUES ('value1', 'value2');
-        $sql = 'INSERT INTO ' . $this->table . ' (' . implode(', ', $fields) . ') VALUES (' . implode(', ', $values) . ')';
-        //dump($sql);
-        return $this->statement($sql);
-    }
-
-    public function update(array $attributes)
-    {
-        if (isset($attributes['id'])) {
-            $id = $attributes['id'];
-            unset($attributes['id']);
-            $fields = [];
-            $values = [];
-            foreach ($attributes as $key => $value) {
-                $fields[] = $key . ' = ?';
+        foreach ($datas as $key => $value) {
+            if ($value !== NULL && $key != 'db' && $key != 'table') {
+                $fields[] = $key;
+                $placeholder[] = '?';
                 $values[] = $value;
             }
-            // UPDATE annonces SET titre = ?, description = ?, actif = ? WHERE id= ?
+        }
+        // INSERT INTO auteurs (key1, key2) VALUES (?, ?);
+        $sql = 'INSERT INTO ' . $this->table . ' (' . implode(', ', $fields) . ') VALUES (' . implode(', ', $placeholder) . ')';
+        return $this->statement($sql, $values);
+    }
+
+    /**
+     * Mise à jour d'une entrée sélectionnée par son ID
+     * Selon les données fournis dans un tableau
+     * @param array $datas// Données à mettre à jour
+     * @return bool
+     */
+    public function update(array $datas)
+    {
+        if (is_int($datas['id']) && $datas['id'] > 0) {
+            $id = $datas['id'];
+            unset($datas['id']);
+            $fields = [];
+            $values = [];
+            foreach ($datas as $key => $value) {
+                if ($value !== NULL && $key != 'db' && $key != 'table') {
+                    $fields[] = $key . ' = ?';
+                    $values[] = $value;
+                }
+            }
+            // UPDATE auteurs SET auteur = ?, bio = ?, extra = ? WHERE id= ?
             $sql = 'UPDATE ' . $this->table . ' SET ' . implode(', ', $fields) . ' WHERE id = ?';
             $values[] = $id;
-            dump($sql, $values);
             return $this->statement($sql, $values);
         }
     }
 
+    /**
+     * Suppression d'une entrée
+     * @param integer $id
+     * @return bool
+     */
     public function delete(int $id)
     {
-        $sql = 'DELETE FROM ' . $this->table . ' WHERE id = ' . $id;
-        return $this->statement($sql);
+        $sql = 'DELETE FROM ' . $this->table . ' WHERE id = ?';
+        return $this->statement($sql, [$id]);
     }
 }
