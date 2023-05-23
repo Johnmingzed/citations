@@ -1,11 +1,11 @@
 <?php
 
 use App\Autoloader as AppAutoloader;
-use App\Models\AuteursModel;
+use App\Models\AuteursManager;
 use Core\Autoloader as CoreAutoloader;
 use Core\Debug;
 use Core\BDD\Database;
-use Core\BDD\Model;
+use Core\BDD\Manager;
 
 define('ROOT', dirname(__DIR__));
 require_once ROOT . '/conf/constantes.php';
@@ -18,7 +18,7 @@ require_once ROOT . '/Core/Autoloader.php';
 CoreAutoloader::register();
 
 
-$auteurs = new AuteursModel;
+$auteurs = new AuteursManager;
 echo 'Test de findAll :';
 dump($auteurs->findAll());
 echo 'Test de findById(1) :';

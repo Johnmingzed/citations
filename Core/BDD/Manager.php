@@ -7,15 +7,15 @@ use PDO;
 use PDOException;
 use PDOStatement;
 
-class Model extends Database
+class Manager extends Database
 {
-    protected $table = 'auteurs';
-    protected $db;
+    protected $table;
+    protected Database $db;
 
     /**
      * Méthode principale d'éxecution des requêtes
      * @param string $sql // Requête SQL à éxecuter
-     * @param array $attributes // Attributs à ajouter à la requête
+     * @param array|NULL $attributes // Attributs à ajouter à la requête
      * @return PDOStatement|false
      */
     public function statement(string $sql, array $attributes = NULL): PDOStatement|false

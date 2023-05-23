@@ -29,8 +29,10 @@ class Database extends PDO
             $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             header('HTTP/1.1 500 INTERNAL SERVER ERROR');
-            echo 'Nous avons rencontré une erreur interne : ';
-            echo $e->getMessage();
+            if (DEBUG) {
+                echo 'Nous avons rencontré une erreur interne : ';
+                echo $e->getMessage();
+            }
         }
         // echo uniqid();
     }
