@@ -8,7 +8,6 @@ class AuteursModel extends Model
 {
     public function __construct()
     {
-        $this->db = parent::getInstance();
         $this->table = 'auteurs';
     }
 }
