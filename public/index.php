@@ -19,8 +19,18 @@ CoreAutoloader::register();
 
 
 $auteurs = new AuteursModel;
-dump($auteurs->findAll());
-
-// Test de fonctionnement de Database
 $model = new Model;
-dump($model->findBy(['id' => 2]));
+echo 'Test de findAll :';
+dump($auteurs->findAll());
+echo 'Test de findById(1) :';
+dump($auteurs->findById(1));
+echo 'Test de create :';
+dump($auteurs->create(['auteur' => 'Macron', 'bio' => 'CEO de la France']));
+echo 'Test de findBy :';
+$test = $model->findBy(['auteur' => 'Macron']);
+dump($test);
+$testId = $test[0]->id;
+echo 'Test de update :';
+dump($auteurs->update(['id' => $testId, 'auteur' => 'Macron 1er', 'bio' => 'Un sacré fils de pute']));
+echo 'Test de delete :';
+dump($model->delete($testId));

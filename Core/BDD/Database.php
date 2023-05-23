@@ -11,7 +11,7 @@ use PDOException;
  */
 class Database extends PDO
 {
-    private static $instance;
+    static $instance;
 
     protected function __construct()
     {
