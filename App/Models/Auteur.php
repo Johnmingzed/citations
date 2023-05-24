@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use DateTime;
+use Core\Debug;
 
 class Auteur
 {
@@ -69,13 +70,8 @@ class Auteur
      * Set the value of date_modif
      */
     public function setDate_Modif(DateTime|string $date = null): self
-    {
-        if (is_string($date)) {
-            $newdate = new Datetime();
-            $newdate->setTimestamp(strtotime($date));
-            $this->date = $newdate;
-        }
-        $this->date = $date;
+    {   
+        $this->date = Debug::dateVerif($date);
         return $this;
     }
 

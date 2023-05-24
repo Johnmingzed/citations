@@ -23,10 +23,8 @@ $datas = ['id' => 1, 'date_modif' => $now, 'auteur' => 'Jonathan', 'bio' => 'Dé
 $datas = ['auteur' => 'Jonathan', 'bio' => 'Développeur'];
 dump($datas);
 $jonathan = new Auteur($datas);
-dump($jonathan);
 $manager = new AuteursManager;
 $manager->add($jonathan);
-dump($jonathan);
 
 
 die('Fin du script');
