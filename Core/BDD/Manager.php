@@ -103,13 +103,13 @@ class Manager extends Database
     /**
      * Mise à jour d'une entrée sélectionnée par son ID
      * Selon les données fournis dans un tableau
+     * @param int $id // ID de l'entrée à modifer
      * @param array $datas// Données à mettre à jour
      * @return bool
      */
-    public function update(array $datas): bool
+    public function update(int $id, array $datas): bool
     {
-        if (is_int($datas['id']) && $datas['id'] > 0) {
-            $id = $datas['id'];
+        if (is_int($id) && $id > 0) {
             unset($datas['id']);
             $fields = [];
             $values = [];

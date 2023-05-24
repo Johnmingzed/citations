@@ -18,13 +18,15 @@ AppAutoloader::register();
 require_once ROOT . '/Core/Autoloader.php';
 CoreAutoloader::register();
 
-$now = new DateTime;
-$datas = ['id' => 1, 'date_modif' => $now, 'auteur' => 'Jonathan', 'bio' => 'Développeur'];
 $datas = ['auteur' => 'Jonathan', 'bio' => 'Développeur'];
-dump($datas);
+$modifications = ['auteur' => 'Jonathan PAIN-CHAMMING\'S', 'bio' => 'Développeur en formation'];
+dump('data', $datas);
 $jonathan = new Auteur($datas);
 $manager = new AuteursManager;
-$manager->add($jonathan);
+dump('add', $manager->add($jonathan));
+dump('destroy', $manager->destroy($jonathan));
+dump('display', $manager->display(2));
+// $manager->modify($jonathan);
 
 
 die('Fin du script');
