@@ -2,6 +2,8 @@
 
 namespace Core\BDD;
 
+use App\Models\AuteursManager;
+use App\Models\Auteurs;
 use Exception;
 use PDO;
 use PDOException;
@@ -78,12 +80,13 @@ class Manager extends Database
     /**
      * Création d'une entrée selon un tableau de données
      * @param array $datas// Données à enregistrer
-     * @return bool
+     * @return string|false // Résultat de l'opération PDO
      */
-    public function create(array $datas)
+    public function create(array $datas): string|false
     {
         $fields = [];
         $values = [];
+        $placeholder = [];
         foreach ($datas as $key => $value) {
             if ($value !== NULL && $key != 'db' && $key != 'table') {
                 $fields[] = $key;
@@ -93,7 +96,8 @@ class Manager extends Database
         }
         // INSERT INTO auteurs (key1, key2) VALUES (?, ?);
         $sql = 'INSERT INTO ' . $this->table . ' (' . implode(', ', $fields) . ') VALUES (' . implode(', ', $placeholder) . ')';
-        return $this->statement($sql, $values);
+        $this->statement($sql, $values);
+        return $this->db->lastInsertId();
     }
 
     /**
@@ -102,7 +106,7 @@ class Manager extends Database
      * @param array $datas// Données à mettre à jour
      * @return bool
      */
-    public function update(array $datas)
+    public function update(array $datas): bool
     {
         if (is_int($datas['id']) && $datas['id'] > 0) {
             $id = $datas['id'];
@@ -118,8 +122,10 @@ class Manager extends Database
             // UPDATE auteurs SET auteur = ?, bio = ?, extra = ? WHERE id= ?
             $sql = 'UPDATE ' . $this->table . ' SET ' . implode(', ', $fields) . ' WHERE id = ?';
             $values[] = $id;
-            return $this->statement($sql, $values);
+            $this->statement($sql, $values);
+            return true;
         }
+        return false;
     }
 
     /**
