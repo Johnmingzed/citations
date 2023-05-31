@@ -9,26 +9,25 @@
 </head>
 
 <body>
-<header class="container">
+    <header class="container">
         <h1 class="display-2 text-center m-4">Citations</h1>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                <a class="nav-link" href="../citation">
-                    Les Citations
-                </a>
+                    <a class="nav-link" href="../citation">
+                        Les Citations
+                    </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="../auteur">
-                    Les Auteurs
-                </a>
+                    <a class="nav-link" href="../auteur">
+                        Les Auteurs
+                    </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="../utilisateur">
-                    Les utilisateurs
-                </a>
+                    <a class="nav-link" href="../utilisateur">
+                        Les utilisateurs
+                    </a>
                 </li>
-                
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
