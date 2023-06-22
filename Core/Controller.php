@@ -8,6 +8,7 @@ class Controller
 {
     protected string $module;
     protected Manager $manager;
+    protected string $title='Mon super titre';
 
     public function __construct()
     {
@@ -23,7 +24,7 @@ class Controller
     public function index()
     {
         $data = $this->manager->findAll();
-        $title = 'Mon super titre';
+        $title = $this->title;
         $compact['title'] = $title;
         $compact['data'] = $data;
         $this->render($compact, 'index.php');
